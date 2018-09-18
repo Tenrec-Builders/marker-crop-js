@@ -1,0 +1,82 @@
+---
+
+app-title: Marker Crop
+nav-restart: Restart
+app-description: Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images.
+
+loading: Loading...
+stage: Stage
+
+fileselect:
+  name: Select Images
+  blurb: Once you have scanned using the physical markers, you can load them into the app for batch processing into a PDF. Make sure to select one complete book at a time.
+  notice: Marker Crop runs as an app entirely on your computer. No images are uploaded or processed anywhere else.
+  label: Select Images to Process
+  help: Choose a directory containing images you wish to collate into a PDF. All images inside that directory and in any subdirectories will be processed.
+
+options:
+  name: Parameters
+
+  cropping:
+    odd-label: Odd Page Extra Cropping (pixels)
+    even-label: Even Page Extra Cropping (pixels)
+    top: Top
+    bottom: Bottom
+    gutter: Gutter
+    edge: Edge
+
+  padding:
+    label: Margin Padding Style
+    blur: Blurred Edge Color
+    mean: Image Mean Color
+    white: White Bars
+    black: Black Bars
+
+  quality:
+    label: JPEG Quality
+    fair: Fair Quality (Low Size)
+    good: Good Quality (Moderate Size)
+    great: Great Quality (High Size)
+
+  deskew-label: Deskew
+
+  sharpen-label: Sharpen
+
+  grayscale-label: Grayscale
+
+  process-button: Begin Processing
+
+  sample:
+    title: Sample Page
+    even: Even
+    odd: Odd
+    update: Update View
+    first: First Page
+    previous: Previous
+    random: Random
+    next: Next
+    last: Last Page
+    failure: Sample Failed to Process. Try another page.
+
+processing:
+  title: Finding Markers
+  status: Searching Image
+  failed: Images without markers
+
+fixing:
+  title: Manual Cropping
+  next: Next
+  status: Fixing Image
+  description: Fiducial markers were not found for this image. You must manually set the cropping region. Rotate to proper orientation, then drag the correct crop box for this page and then click next.
+  rotate-left: Rotate Left
+  rotate-right: Rotate Right
+
+collating:
+  title: Collating Images
+  status: Collating Image into PDF
+
+save:
+  title: Save PDF to Disk
+  save: Save PDF
+
+---

@@ -1,0 +1,58 @@
+#button-restart {
+    margin: 7px;
+}
+
+#stage-loading > div,
+.spinner{
+    display: flex;
+    justify-content: center;
+}
+
+input:invalid {
+  border:1px solid red;
+}
+
+#embedded-pdf {
+    margin-top: 20px;
+    width: 100%;
+    height: 700px;
+}
+
+#image-fix {
+    max-width: 50%;
+    max-height: 600px;
+}
+
+#fix-rotate-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#stage-options #canvas-sample-page {
+    margin: 10px;
+    border-width: 1px;
+    border-color: #777;
+    border-style: dashed;
+}
+
+#stage-options #update-sample {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.cropping-group-active {
+    background-color: #ddf;
+}
+
+#stage-options #odd-cropping-group,
+#stage-options #even-cropping-group {
+    padding-bottom: 10px;
+}
+
+.alert-fyi
+{
+    background-color: #eee;
+    border-ecolor: #999;
+}

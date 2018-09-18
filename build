@@ -1,0 +1,10 @@
+#!/bin/sh
+
+mkdir -p dist
+cp images/spinner.gif dist 
+cp -r css dist 
+cp -r fonts dist 
+cp -r js dist 
+
+mustache -e lang/en.yml template/marker-crop.html > dist/marker-crop.en.html 
+mustache -e lang/es.yml template/marker-crop.html > dist/marker-crop.es.html

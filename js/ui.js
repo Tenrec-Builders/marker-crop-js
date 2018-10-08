@@ -144,6 +144,11 @@ $(function ()
     $('#stage-options #sample-title-odd').hide();
     var image = new Image();
     image.src = URL.createObjectURL(sampleImage.file);
+    image.onerror = function () {
+      mainErrorHandler(Error("Could not load file as an image."),
+		       'Sample Image Loader', sampleImage.index,
+		       sampleImage.file.name);
+    }
     image.onload = function () {
       try
       {
@@ -299,6 +304,11 @@ $(function ()
       {
 	var image = new Image();
 	image.src = URL.createObjectURL(processFiles[processIndex]);
+	image.onerror = function () {
+	  mainErrorHandler(Error("Could not load file as an image."),
+			   'Process Image Loader', processIndex,
+			   processFiles[processIndex].name);
+	}
 	image.onload = function () {
 	  try
 	  {
@@ -317,6 +327,7 @@ $(function ()
 	  }
 	  catch (e)
 	  {
+	    window.clearTimeout(timer);
 	    if (processIndex < processFiles.length)
 	    {
 	      mainErrorHandler(e, 'Process Inside', processIndex, processFiles[processIndex].name);
@@ -344,6 +355,7 @@ $(function ()
     }
     catch (e)
     {
+      window.clearTimeout(timer);
       if (processIndex < processFiles.length)
       {
 	mainErrorHandler(e, 'Process Outside', processIndex, processFiles[processIndex].name);

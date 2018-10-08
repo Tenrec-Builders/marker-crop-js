@@ -398,7 +398,6 @@
         {
           $('#stage-error #error-filename').parent().hide();
         }
-        console.log(error);
         StackTrace.fromError(error, { offline: true })
           .then( function (trace)
           {

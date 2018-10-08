@@ -2,7 +2,7 @@
 
 app-title: Marker Crop 1.0
 nav-restart: Restart
-app-description: Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images. This software works with physical fiducial markers which you use during scanning. These physical markers act as crop marks, and also determine the orientation of the page. During scanning you can see where the book will be cropped as you scan. Then after scanning the entire book can be processed as a single batch process. You only need to specify the settings up front. Only if there are issues finding markers will you need to manually deal with individual pages. For more details on the project and how to create your own crop marks, please see the <a href="https://github.com/Tenrec-Builers/marker-crop-js">project page</a>.
+app-description: Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images. This software works with physical fiducial markers which you use during scanning. These physical markers act as crop marks, and also determine the orientation of the page. During scanning you can see where the book will be cropped as you scan. Then after scanning the entire book can be processed as a single batch process. You only need to specify the settings up front. Only if there are issues finding markers will you need to manually deal with individual pages. For more details on the project, how to create your own markers, or how to scan, please see the <a href="https://github.com/Tenrec-Builders/marker-crop-js">project page</a>.
 
 loading: Loading...
 stage: Stage
@@ -22,10 +22,10 @@ error:
 
 fileselect:
   name: Select Images
-  blurb: Once you have scanned using the physical markers, you can load them into the app for batch processing. Make sure to select one complete book at a time.
-  notice: Marker Crop runs as an app entirely on your computer. <b>No images are uploaded or processed anywhere else.</b>
+  blurb: After scanneing with physical markers, you can load the images into this app for batch processing. Make sure to select one complete book at a time. The source images are unchanged. All processing options are applied to a new set of images which will be downloaded at the end as a PDF or ZIP file.
+  notice: <b>Marker Crop runs as an app entirely on your computer. No images are transferred anywhere else.</b> When you choose files and click 'upload', the local app will use them without transferring them anywhere. This app works offline and is not a cloud application.
   label: Select Images to Process
-  help: Choose a directory containing images you wish to collate into a PDF. All images inside that directory and in any subdirectories will be processed.
+  help: Choose a directory containing images you wish to collate into a PDF or ZIP archive. All images inside that directory and in any subdirectories will be processed.
 
 options:
   name: Parameters
@@ -39,7 +39,7 @@ options:
     edge: Edge
 
     odd-help-title: Cropping for Odd Pages
-    odd-help: Extra cropping performed only on odd pages. Odd pages are identified using the set of odd markers and should usually be the right-hand pages which are conventionally numbered as even pages by publishers.
+    odd-help: Extra cropping performed only on odd pages. Odd pages are identified using the set of odd markers and should usually be the right-hand pages which are conventionally numbered as odd pages by publishers.
     odd-top-title: Top Cropping (Odd Pages)
     odd-bottom-title: Bottom Cropping (Odd Pages)
     odd-gutter-title: Gutter Cropping (Odd Pages)
@@ -48,13 +48,13 @@ options:
     odd-edge-help: The distance between the left side of the edge marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the right side of your pages. <img src='images/en/odd-edge.png'>
 
     even-help-title: Cropping for Even Pages
-    even-help: Extra cropping performed only on even pages. Even pages are identified using hte set of even markers and should usually be the left-hand pages which are conventionally numbered as even pages by publishers.
+    even-help: Extra cropping performed only on even pages. Even pages are identified using the set of even markers and should usually be the left-hand pages which are conventionally numbered as even pages by publishers.
     even-top-title: Top Cropping (Even Pages)
     even-bottom-title: Bottom Cropping (Even Pages)
     even-gutter-title: Gutter Cropping (Even Pages)
     even-gutter-help: The distance between the right side of the gutter marker and the place where the book should be cropped in pixels. <b>Note</b> that this is usually a <b>negative</b> number since you normally want the crop line to be further into the cutter than the edge of the marker. <img src='images/en/even-gutter.png'>
     even-edge-title: Edge Cropping (Even Pages)
-    even-edge-help: The distance between the right side of the edge marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the right side of your pages. <img src='images/en/even-edge.png'>
+    even-edge-help: The distance between the right side of the edge marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the left side of your pages. <img src='images/en/even-edge.png'>
 
     top-help: The distance between the bottom of the top marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the tops of your pages. <img src='images/en/top.png'>
     bottom-help: The distance between the top of the bottom marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the bottoms of your pages. <img src='images/en/bottom.png'>
@@ -62,7 +62,7 @@ options:
   padding:
     label: Margin Padding Style
     help-title: Margin Padding for Uniform Page Sizes
-    help: After cropping, some the exact page size in pixels may vary. Each option provides a different way to pad out the smaller images to provide a consistent output size:<ul><li><b>No Padding</b> Allow pages to be different sizes. Use no padding.</li><li><b>Blurred Edge Color</b> Extend the pixels on the edge of the page, blurring them out to provide a background color.</li><li><b>Image Mean Color</b> Get the average color of the entire page and use that as a background color when padding out the edges.</li><li><b>White Bars</b> Use white as a background color when padding the edges.</li><li><b>Black Bars</b> Use black as a background color when padding the edges.</li></ul>
+    help: After cropping, the size of images may vary from page to page. There are different ways to pad out (or not) the smaller images to provide a consistent output size:<ul><li><b>No Padding</b> Allow pages to be different sizes. Use no padding.</li><li><b>Blurred Edge Color</b> Extend the pixels on the edge of the page, blurring them out to provide a background color.</li><li><b>Image Mean Color</b> Get the average color of the entire page and use that as a background color when padding out the edges.</li><li><b>White Bars</b> Use white as a background color when padding the edges.</li><li><b>Black Bars</b> Use black as a background color when padding the edges.</li></ul>
     blur: Blurred Edge Color
     mean: Image Mean Color
     white: White Bars
@@ -79,7 +79,7 @@ options:
 
   deskew-label: Deskew
   deskew-help-title: Apply Deskew Transform on All Pages
-  deskew-help: If your cameras are not aligned properly, your scans might have be slightly skewed, or visually tilted right or left. If there is a slight skew on your images, this option will automatically detect and correct it during processing. This option assumes a noral printed page where the lines of the page should normally line up and be absolutely horizontal. If you are scanning pictures, maps, or other non-standard book pages then turn this option off.
+  deskew-help: If your cameras are not aligned properly, your scans might be slightly skewed, or visually tilted right or left. If there is a slight skew on your images, this option will automatically detect and correct it during processing. This option assumes a normal printed page where the lines of the page should normally line up horizontally. If you are scanning pictures, maps, or other non-standard book pages then turn this option off.
 
   sharpen-label: Sharpen
   sharpen-help-title: Sharpen to Improve Readability
@@ -87,7 +87,7 @@ options:
 
   grayscale-label: Grayscale
   grayscale-help-title: Convert to Grayscale
-  grayscale-help: Convert every image to grayscale. Sometimes the white balance of input images is off and this may become distracting while trying to read them. Converting to grayscale will solve this problem for most books. Note that because of how JPEG works, converting to grayscale will be unlikely to directly save much disk space.
+  grayscale-help: Convert every image to grayscale. Note that because of how JPEG works, converting to grayscale will be unlikely to directly save much disk space.
 
   output:
     label: Output Format
@@ -125,7 +125,7 @@ fixing:
 
 collating:
   title: Collating Images
-  status: Collating Image into PDF
+  status: Collating Image
 
 save:
   title-pdf: Save PDF to Disk

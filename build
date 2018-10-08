@@ -1,10 +1,25 @@
 #!/bin/sh
 
 mkdir -p dist
-cp images/spinner.gif dist 
+mkdir -p dist/images/en
+mkdir -p dist/images/es
+rm dist/marker-crop-1.0.zip
+cp images/spinner.gif dist
+cp images/en/*.png dist/images/en
+cp images/es/*.png dist/images/es
 cp -r css dist 
 cp -r fonts dist 
-cp -r js dist 
+cp -r js dist
 
 mustache -e lang/en.yml template/marker-crop.html > dist/marker-crop.en.html 
 mustache -e lang/es.yml template/marker-crop.html > dist/marker-crop.es.html
+
+mkdir -p tmp/marker-crop-1.0
+cp -r dist/* tmp/marker-crop-1.0
+cd tmp
+zip marker-crop-1.0.zip marker-crop-1.0
+cd ..
+mv tmp/marker-crop-1.0.zip dist
+rm -rf tmp/marker-crop-1.0
+rm -rf tmp/marker-crop-1.0.zip
+

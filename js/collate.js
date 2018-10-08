@@ -4,16 +4,39 @@ $(function ()
 
   var imageMax = 0;
   
-  window.collateMarkerImage = function (doc, next, options, pageSize)
+  window.collateMarkerImagePdf = function (doc, next, options, pageSize)
   {
     var image = window.transformMarkerImage(next, options, pageSize);
     
     cv.imshow('canvas-collate', image);
     var quality = getQuality(options.parameters.quality);
     var data = $('#stage-collating #canvas-collate')[0].toDataURL('image/jpeg', quality);
-    doc.addImage(data, 'JPEG', 0, 0,
-		 pageSize.width,
-		 pageSize.height);
+    if (options.parameters.border === 'none')
+    {
+      var left = (pageSize.maxWidth - image.size().width)/(2*pageSize.divisor);
+      var top = (pageSize.maxHeight - image.size().height)/(2*pageSize.divisor);
+      doc.addImage(data, 'JPEG', left, top,
+		   image.size().width/pageSize.divisor,
+		   image.size().height/pageSize.divisor);
+    }
+    else
+    {
+      doc.addImage(data, 'JPEG', 0, 0,
+		   pageSize.width,
+		   pageSize.height);
+    }
+  };
+
+  window.collateMarkerImageZip = function (doc, next, options,
+					   pageSize, filename)
+  {
+    var image = window.transformMarkerImage(next, options, pageSize);
+    
+    cv.imshow('canvas-collate', image);
+    var quality = getQuality(options.parameters.quality);
+    var data = $('#stage-collating #canvas-collate')[0].toBlob(function(b) {
+      doc.file(filename, b);      
+    }, 'image/jpeg', quality);
   };
 
   var baseImage = null;
@@ -37,7 +60,10 @@ $(function ()
     image = deskew(image, options);
     image = sharpen(image, options);
     image = grayscale(image, options);
-    image = aspectRatio(image, options, pageSize);
+    if (options.parameters.border !== 'none')
+    {
+      image = aspectRatio(image, options, pageSize);
+    }
     return image;
   };
 

@@ -56,3 +56,10 @@ input:invalid {
     background-color: #eee;
     border-ecolor: #999;
 }
+
+.info-hover
+{
+    color: #5bc0de;
+    margin-left: 3px;
+    margin-right: 3px;
+}

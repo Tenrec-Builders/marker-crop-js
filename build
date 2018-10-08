@@ -17,7 +17,7 @@ mustache -e lang/es.yml template/marker-crop.html > dist/marker-crop.es.html
 mkdir -p tmp/marker-crop-1.0
 cp -r dist/* tmp/marker-crop-1.0
 cd tmp
-zip marker-crop-1.0.zip marker-crop-1.0
+zip -r marker-crop-1.0.zip marker-crop-1.0
 cd ..
 mv tmp/marker-crop-1.0.zip dist
 rm -rf tmp/marker-crop-1.0

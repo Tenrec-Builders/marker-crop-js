@@ -2,7 +2,7 @@
 
 app-title: Marker Crop 1.0
 nav-restart: Restart
-app-description: Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images. This software works with physical fiducial markers which you use during scanning. These physical markers act as crop marks, and also determine the orientation of the page. During scanning you can see where the book will be cropped as you scan. Then after scanning the entire book can be processed as a single batch process. You only need to specify the settings up front. Only if there are issues finding markers will you need to manually deal with individual pages. For more details on the project and how to create your own crop marks, please see the <a href="https://github.com/Tenrec-Builers/marker-crop-js">project page</a>.
+app-description: Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images. This software works with physical fiducial markers which you use during scanning. These physical markers act as crop marks, and also determine the orientation of the page. During scanning you can see where the book will be cropped as you scan. Then after scanning the entire book can be processed as a single batch process. You only need to specify the settings up front. Only if there are issues finding markers will you need to manually deal with individual pages. For more details on the project and how to create your own crop marks, please see the <a href="https://github.com/Tenrec-Builders/marker-crop-js">project page</a>.
 
 loading: Loading...
 stage: Stage
@@ -23,7 +23,7 @@ error:
 fileselect:
   name: Select Images
   blurb: Once you have scanned using the physical markers, you can load them into the app for batch processing. Make sure to select one complete book at a time.
-  notice: Marker Crop runs as an app entirely on your computer. <b>No images are uploaded or processed anywhere else.</b>
+  notice: Marker Crop runs as an app entirely on your computer. <b>No images are uploaded or transferred from your computer.</b>
   label: Select Images to Process
   help: Choose a directory containing images you wish to collate into a PDF. All images inside that directory and in any subdirectories will be processed.
 

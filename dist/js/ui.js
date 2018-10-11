@@ -34,6 +34,7 @@ $(function ()
   var processFiles = [];
   var processIndex = 0;
   var processDone = [];
+  var loadFailed = [];
   var badIndices = [];
 
   function restart()
@@ -145,9 +146,7 @@ $(function ()
     var image = new Image();
     image.src = URL.createObjectURL(sampleImage.file);
     image.onerror = function () {
-      mainErrorHandler(Error("Could not load file as an image."),
-		       'Sample Image Loader', sampleImage.index,
-		       sampleImage.file.name);
+      sampleFailed('Could not load file as an image.');
     }
     image.onload = function () {
       try
@@ -168,11 +167,7 @@ $(function ()
 	}
 	if (info.message !== null)
 	{
-	  $('#stage-options #sample-failed-message').html(info.message);
-	  $('#stage-options #sample-loading').hide();
-	  $('#stage-options #sample-failed').show();
-	  $('#stage-options #sample-buttons').show();
-	  sampleWaiting = false;
+	  sampleFailed(info.message);
 	}
 	else
 	{
@@ -210,6 +205,15 @@ $(function ()
 	mainErrorHandler(e, 'Update Sample', sampleImage.index, sampleImage.file.name);
       }
     };
+  }
+
+  function sampleFailed(message)
+  {
+    $('#stage-options #sample-failed-message').html(message);
+    $('#stage-options #sample-loading').hide();
+    $('#stage-options #sample-failed').show();
+    $('#stage-options #sample-buttons').show();
+    sampleWaiting = false;
   }
 
   function getExtraCroppingSize(size)
@@ -305,9 +309,13 @@ $(function ()
 	var image = new Image();
 	image.src = URL.createObjectURL(processFiles[processIndex]);
 	image.onerror = function () {
-	  mainErrorHandler(Error("Could not load file as an image."),
-			   'Process Image Loader', processIndex,
-			   processFiles[processIndex].name);
+	  $('#skipped').show();
+	  $('#skipped .list-group').append('<li class="list-group-item">Skipped (could not load as image): <b>' + _.escape(processFiles[processIndex].name) + '</b></li>');
+	  loadFailed.push(true);
+	  processDone.push(null);
+	  ++processIndex;
+	  processStatus();
+	  timer = window.setTimeout(processNext, 100);
 	}
 	image.onload = function () {
 	  try
@@ -322,6 +330,7 @@ $(function ()
 	      badIndices.push(processIndex);
 	    }
 	    URL.revokeObjectURL(image.src);
+	    loadFailed.push(false);
 	    ++processIndex;
 	    timer = window.setTimeout(processNext, 100);
 	  }
@@ -497,14 +506,17 @@ $(function ()
 
     for (i = 0; i < processDone.length; ++i)
     {
-      var crop = processDone[i].crop;
-      if (crop.right - crop.left > maxWidth)
+      if (! loadFailed[i])
       {
-	maxWidth = crop.right - crop.left;
-      }
-      if (crop.bottom - crop.top > maxHeight)
-      {
-	maxHeight = crop.bottom - crop.top;
+	var crop = processDone[i].crop;
+	if (crop.right - crop.left > maxWidth)
+	{
+	  maxWidth = crop.right - crop.left;
+	}
+	if (crop.bottom - crop.top > maxHeight)
+	{
+	  maxHeight = crop.bottom - crop.top;
+	}
       }
     }
     pageSize = {
@@ -556,6 +568,10 @@ $(function ()
   {
     try
     {
+      while (collateIndex < processDone.length && loadFailed[collateIndex])
+      {
+	++collateIndex;
+      }
       collateStatus();
       if (collateIndex < processDone.length)
       {
@@ -575,7 +591,7 @@ $(function ()
 	    }
 	    else
 	    {
-	      var filename = padZero(collateIndex);
+	      var filename = processFiles[collateIndex].name;
 	      window.collateMarkerImageZip(outputDoc, image,
 					   processDone[collateIndex],
 					   pageSize,
@@ -616,16 +632,6 @@ $(function ()
 	mainErrorHandler(e, 'Collate Outside End');
       }
     }
-  }
-
-  function padZero(num)
-  {
-    var result = num.toString();
-    while (result.length < 4)
-    {
-      result = '0' + result;
-    }
-    return result + '.jpg';
   }
 
   var pdfBlobUrl = null;

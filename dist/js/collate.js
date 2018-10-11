@@ -34,9 +34,11 @@ $(function ()
     
     cv.imshow('canvas-collate', image);
     var quality = getQuality(options.parameters.quality);
-    var data = $('#stage-collating #canvas-collate')[0].toBlob(function(b) {
-      doc.file(filename, b);      
-    }, 'image/jpeg', quality);
+    var data = $('#stage-collating #canvas-collate')[0].toDataURL('image/jpeg', quality);
+    doc.file(filename,
+	     decodeURIComponent(data.substr(data.indexOf('base64,')+7)),
+	     { createFolders: true,
+	       base64: true });
   };
 
   var baseImage = null;

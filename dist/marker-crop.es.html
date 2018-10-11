@@ -71,18 +71,18 @@
     </div>
 
     <div id="stage-fileselect" class="marker-stage" style="display: none">
-      <p>Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images. This software works with physical fiducial markers which you use during scanning. These physical markers act as crop marks, and also determine the orientation of the page. During scanning you can see where the book will be cropped as you scan. Then after scanning the entire book can be processed as a single batch process. You only need to specify the settings up front. Only if there are issues finding markers will you need to manually deal with individual pages. For more details on the project and how to create your own crop marks, please see the <a href="https://github.com/Tenrec-Builers/marker-crop-js">project page</a>.</p><p>Marker Crop runs as an app entirely on your computer. <b>No images are uploaded or processed anywhere else.</b></p>
+      <p>Welcome to Marker Crop. This is a tool for automatically post-processing scanned book images. This software works with physical fiducial markers which you use during scanning. These physical markers act as crop marks, and also determine the orientation of the page. During scanning you can see where the book will be cropped as you scan. Then after scanning the entire book can be processed as a single batch process. You only need to specify the settings up front. Only if there are issues finding markers will you need to manually deal with individual pages. For more details on the project, how to create your own markers, or how to scan, please see the <a href="https://github.com/Tenrec-Builders/marker-crop-js">project page</a>.</p><p><b>Marker Crop runs as an app entirely on your computer. No images are transferred anywhere else.</b> When you choose files and click 'upload', the local app will use them without transferring them anywhere. This app works offline and is not a cloud application.</p>
       <div class="panel panel-success">
 	<div class="panel-heading">
 	  <h2 class="panel-title">Select Images (Stage 1/6)</h2>
 	</div>
 	<div class="panel-body">
-	  <p>Once you have scanned using the physical markers, you can load them into the app for batch processing. Make sure to select one complete book at a time.</p>
+	  <p>After scanneing with physical markers, you can load the images into this app for batch processing. Make sure to select one complete book at a time. The source images are unchanged. All processing options are applied to a new set of images which will be downloaded at the end as a PDF or ZIP file.</p>
 	  <form id="form-images">
 	    <div class="form-group">
 	      <label for="input-images">Select Images to Process</label>
 	      <input type="file" id="input-images" name="file" multiple="multiple" webkitdirectory>
-	      <p class="help-block">Choose a directory containing images you wish to collate into a PDF. All images inside that directory and in any subdirectories will be processed.</p>
+	      <p class="help-block">Choose a directory containing images you wish to collate into a PDF or ZIP archive. All images inside that directory and in any subdirectories will be processed.</p>
 	    </div>
 	  </form>
 	</div>
@@ -100,7 +100,7 @@
 	      <form class="form-horizontal">
 
 		<div id="odd-cropping-group" class="form-group">
-		  <label class="col-sm-4 control-label">Odd Page Extra Cropping (pixels)<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Cropping for Odd Pages" data-trigger="hover" data-content="Extra cropping performed only on odd pages. Odd pages are identified using the set of odd markers and should usually be the right-hand pages which are conventionally numbered as even pages by publishers."></span></label>
+		  <label class="col-sm-4 control-label">Odd Page Extra Cropping (pixels)<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Cropping for Odd Pages" data-trigger="hover" data-content="Extra cropping performed only on odd pages. Odd pages are identified using the set of odd markers and should usually be the right-hand pages which are conventionally numbered as odd pages by publishers."></span></label>
 		  <div class="col-sm-2">
 		    <label for="input-border-top-odd" class="control-label">Top<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Top Cropping (Odd Pages)" data-trigger="hover" data-content="The distance between the bottom of the top marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the tops of your pages. &lt;img src=&#39;images/en/top.png&#39;&gt;"></span></label>
 		    <input id="input-border-top-odd" type="number" class="form-control" value="50">
@@ -119,7 +119,7 @@
 		  </div>
 		</div>
 		<div id="even-cropping-group" class="form-group">
-		  <label class="col-sm-4 control-label">Even Page Extra Cropping (pixels)<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Cropping for Even Pages" data-trigger="hover" data-content="Extra cropping performed only on even pages. Even pages are identified using hte set of even markers and should usually be the left-hand pages which are conventionally numbered as even pages by publishers."></span></label>
+		  <label class="col-sm-4 control-label">Even Page Extra Cropping (pixels)<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Cropping for Even Pages" data-trigger="hover" data-content="Extra cropping performed only on even pages. Even pages are identified using the set of even markers and should usually be the left-hand pages which are conventionally numbered as even pages by publishers."></span></label>
 		  <div class="col-sm-2">
 		    <label for="input-border-top-even" class="control-label">Top<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Top Cropping (Even Pages)" data-trigger="hover" data-content="The distance between the bottom of the top marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the tops of your pages. &lt;img src=&#39;images/en/top.png&#39;&gt;"></span></label>
 		    <input id="input-border-top-even" type="number" class="form-control" value="50">
@@ -133,13 +133,13 @@
 		    <input id="input-border-gutter-even" type="number" class="form-control" value="-50">
 		  </div>
 		  <div class="col-sm-2">
-		    <label for="input-border-edge-even" class="control-label">Edge<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Edge Cropping (Even Pages)" data-trigger="hover" data-content="The distance between the right side of the edge marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the right side of your pages. &lt;img src=&#39;images/en/even-edge.png&#39;&gt;"></span></label>
+		    <label for="input-border-edge-even" class="control-label">Edge<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="bottom" title="Edge Cropping (Even Pages)" data-trigger="hover" data-content="The distance between the right side of the edge marker and the place where the book should be cropped in pixels. You should adjust this so that no part of the marker or its shadow is visible on the left side of your pages. &lt;img src=&#39;images/en/even-edge.png&#39;&gt;"></span></label>
 		    <input id="input-border-edge-even" type="number" class="form-control" value="50">
 		  </div>
 		</div>
 		
  		<div class="form-group">
-		  <label for="select-margin" class="col-sm-4 control-label">Margin Padding Style<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="right" title="Margin Padding for Uniform Page Sizes" data-trigger="hover" data-content="After cropping, some the exact page size in pixels may vary. Each option provides a different way to pad out the smaller images to provide a consistent output size:&lt;ul&gt;&lt;li&gt;&lt;b&gt;No Padding&lt;/b&gt; Allow pages to be different sizes. Use no padding.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Blurred Edge Color&lt;/b&gt; Extend the pixels on the edge of the page, blurring them out to provide a background color.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Image Mean Color&lt;/b&gt; Get the average color of the entire page and use that as a background color when padding out the edges.&lt;/li&gt;&lt;li&gt;&lt;b&gt;White Bars&lt;/b&gt; Use white as a background color when padding the edges.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Black Bars&lt;/b&gt; Use black as a background color when padding the edges.&lt;/li&gt;&lt;/ul&gt;"></span></label>
+		  <label for="select-margin" class="col-sm-4 control-label">Margin Padding Style<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="right" title="Margin Padding for Uniform Page Sizes" data-trigger="hover" data-content="After cropping, the size of images may vary from page to page. There are different ways to pad out (or not) the smaller images to provide a consistent output size:&lt;ul&gt;&lt;li&gt;&lt;b&gt;No Padding&lt;/b&gt; Allow pages to be different sizes. Use no padding.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Blurred Edge Color&lt;/b&gt; Extend the pixels on the edge of the page, blurring them out to provide a background color.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Image Mean Color&lt;/b&gt; Get the average color of the entire page and use that as a background color when padding out the edges.&lt;/li&gt;&lt;li&gt;&lt;b&gt;White Bars&lt;/b&gt; Use white as a background color when padding the edges.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Black Bars&lt;/b&gt; Use black as a background color when padding the edges.&lt;/li&gt;&lt;/ul&gt;"></span></label>
 		  <div class="col-sm-8">
 		    <select id="select-margin" class="form-control">
 		      <option value="none">No Padding</option>
@@ -166,7 +166,7 @@
 		  <div class="col-sm-offset-4 col-sm-8">
 		    <div class="checkbox">
 		      <label>
-			<input type="checkbox" id="checkbox-deskew">Deskew<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="right" title="Apply Deskew Transform on All Pages" data-trigger="hover" data-content="If your cameras are not aligned properly, your scans might have be slightly skewed, or visually tilted right or left. If there is a slight skew on your images, this option will automatically detect and correct it during processing. This option assumes a noral printed page where the lines of the page should normally line up and be absolutely horizontal. If you are scanning pictures, maps, or other non-standard book pages then turn this option off."></span>
+			<input type="checkbox" id="checkbox-deskew">Deskew<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="right" title="Apply Deskew Transform on All Pages" data-trigger="hover" data-content="If your cameras are not aligned properly, your scans might be slightly skewed, or visually tilted right or left. If there is a slight skew on your images, this option will automatically detect and correct it during processing. This option assumes a normal printed page where the lines of the page should normally line up horizontally. If you are scanning pictures, maps, or other non-standard book pages then turn this option off."></span>
 		      </label>
 		    </div>
 		  </div>
@@ -186,7 +186,7 @@
 		  <div class="col-sm-offset-4 col-sm-8">
 		    <div class="checkbox">
 		      <label>
-			<input type="checkbox" id="checkbox-grayscale">Grayscale<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="right" title="Convert to Grayscale" data-trigger="hover" data-content="Convert every image to grayscale. Sometimes the white balance of input images is off and this may become distracting while trying to read them. Converting to grayscale will solve this problem for most books. Note that because of how JPEG works, converting to grayscale will be unlikely to directly save much disk space."></span>
+			<input type="checkbox" id="checkbox-grayscale">Grayscale<span class="glyphicon glyphicon-question-sign info-hover" data-toggle="popover" data-html="true" data-placement="right" title="Convert to Grayscale" data-trigger="hover" data-content="Convert every image to grayscale. Note that because of how JPEG works, converting to grayscale will be unlikely to directly save much disk space."></span>
 		      </label>
 		    </div>
 		  </div>
@@ -303,7 +303,7 @@
 	</div>
 	<div class="panel-body">
 	  <div class="spinner">
-	    <h3 id="status">Collating Image into PDF <span id="current-collate">0</span>/<span id="collate-count">0</span></h3>
+	    <h3 id="status">Collating Image <span id="current-collate">0</span>/<span id="collate-count">0</span></h3>
 	  </div>
 	  <div class="spinner">
 	    <img src="spinner.gif">
@@ -311,6 +311,11 @@
 	  <canvas id="canvas-collate" style="display: none"></canvas>
 	</div>
       </div>
+    </div>
+
+    <div id="skipped" style="display: none">
+      <ul class="list-group">
+      </ul>
     </div>
 
     <div id="stage-save" class="marker-stage" style="display: none">
@@ -330,6 +335,7 @@
 	</div>
       </div>
     </div>
+
   </div>
 
   <script src="js/lib/jquery-3.3.1.js" type="text/javascript"></script>

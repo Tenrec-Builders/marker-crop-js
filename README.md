@@ -118,7 +118,7 @@ Marker Crop requires a 64-bit operating system (Windows 7 or later, recent versi
 
 ## Download and Install
 
-First, download the [zip file](https://github.com/Tenrec-Builders/marker-crop-js/blob/master/dist/marker-crop-1.0.zip?raw=true) and unzip it to a convenient place. Then open marker-crop.en.html (for the English language) in your favorite browser.
+First, download the [zip file](https://github.com/Tenrec-Builders/marker-crop-js/blob/master/dist/marker-crop-1.1.zip?raw=true) and unzip it to a convenient place. Then open marker-crop.en.html (for the English language) in your favorite browser.
 
 ## Running Marker Crop
 

@@ -87,7 +87,13 @@ $(function ()
   {
     $('.marker-stage').hide();
     $('#stage-options').show();
-    processFiles = $('#stage-fileselect #input-images')[0].files;
+    processFiles = [];
+    _.each($('#stage-fileselect #input-images')[0].files, function (element) {
+      processFiles.push(element);
+    });
+    processFiles = _.sortBy(processFiles, function (element) {
+      return element.name;
+    });
     updateSamplePage(Math.floor(Math.random()*processFiles.length));
   }
 
